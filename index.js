@@ -1,7 +1,10 @@
 import express from 'express';
 import mysql from 'mysql';
+import cors from 'cors';
 const app = express()
 const port = 3000
+app.use(express.json())
+app.use(cors())
 const db = mysql.createConnection(
     {
         host: 'localhost',
@@ -20,15 +23,15 @@ app.get('/books', (req, res) => {
         res.json(result)
     })
 })
-
 app.post("/books", (req, res) => {
 
     const sql1 = "INSERT INTO crud_react (`title`, `descr`, `cover`) VALUES(?)"
 
     const VALUES = [
-        "title from backend",
-        "description from backend",
-        "cover from backend",]
+        req.body.title,
+        req.body.descr,
+        req.body.cover,
+    ]
     db.query(sql1, [VALUES], (err, result) => {
         if (err) return res.json({ message: err })
         return res.json("Book has been created successfully")
