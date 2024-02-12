@@ -25,11 +25,12 @@ app.get('/books', (req, res) => {
 })
 app.post("/books", (req, res) => {
 
-    const sql1 = "INSERT INTO crud_react (`title`, `descr`, `cover`) VALUES(?)"
+    const sql1 = "INSERT INTO crud_react (`title`, `descr`,`price` , `cover`) VALUES(?)"
 
     const VALUES = [
         req.body.title,
         req.body.descr,
+        req.body.price,
         req.body.cover,
     ]
     db.query(sql1, [VALUES], (err, result) => {
