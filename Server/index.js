@@ -39,6 +39,16 @@ app.post("/books", (req, res) => {
     })
 })
 
+app.delete('/books/:id', (req, res) => {
+    const bookId = req.params.id;
+    const q = "DELETE FROM crud_react WHERE id = ?"
+
+    db.query(q, [bookId], (err, data) => {
+        if (err) return res.json(err);
+        return res.json("Book has been deleted successfully")
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 }
