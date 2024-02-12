@@ -1,9 +1,58 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Update = () => {
-  return (
-    <div>Update</div>
-  )
-}
+  const [book, setBook] = useState({
+    title: "",
+    descr: "",
+    price: "",
+    cover: "",
+  });
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3000/books", book);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-export default Update
+  console.log(book);
+  return (
+    <div className="form">
+      <h1>Update book</h1>
+      <input
+        type="text"
+        placeholder="title"
+        onChange={handleChange}
+        name="title"
+      />
+      <input
+        type="text"
+        placeholder="description"
+        onChange={handleChange}
+        name="descr"
+      />
+      <input
+        type="number"
+        placeholder="price"
+        onChange={handleChange}
+        name="number"
+      />
+      <input
+        type="text"
+        placeholder="cover"
+        onChange={handleChange}
+        name="cover"
+      />
+      <button onClick={handleClick}>Update</button>
+    </div>
+  );
+};
+
+export default Update;

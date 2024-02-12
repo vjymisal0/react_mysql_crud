@@ -33,6 +33,7 @@ app.post("/books", (req, res) => {
         req.body.price,
         req.body.cover,
     ]
+    console.log(req.body.price)
     db.query(sql1, [VALUES], (err, result) => {
         if (err) return res.json({ message: err })
         return res.json("Book has been created successfully")
