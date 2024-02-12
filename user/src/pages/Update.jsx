@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const Update = () => {
   const [book, setBook] = useState({
     title: "",
@@ -50,7 +51,9 @@ const Update = () => {
         onChange={handleChange}
         name="cover"
       />
-      <button onClick={handleClick}>Update</button>
+      <button className="formButton" onClick={handleClick}>
+        Update
+      </button>
     </div>
   );
 };
