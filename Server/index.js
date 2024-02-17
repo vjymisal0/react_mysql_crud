@@ -59,13 +59,20 @@ app.put("/books/:id", (req, res) => {
         req.body.descr,
         req.body.price,
         req.body.cover,
-    ]
+        bookId
+    ];
 
-    db.query(q, [...values, bookId], (err, data) => {
-        if (err) return res.json(err);
-        return res.json("Book has been updated successfully")
-    })
-})
+    console.log("Update values:", values); // Log the values being passed to the query
+
+    db.query(q, values, (err, data) => {
+        if (err) {
+            console.error("Error updating book:", err);
+            return res.status(500).json({ error: "Error updating book" });
+        }
+        console.log("Update result:", data); // Log the result of the update query
+        return res.json("Book has been updated successfully");
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)

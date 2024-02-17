@@ -22,7 +22,7 @@ const Update = () => {
     try {
       await axios.post("http://localhost:3000/books", bookId, book);
       navigate("/");
-      console.log(bookId, book);
+      console.log(bookId);
     } catch (err) {
       console.log(err);
     }
