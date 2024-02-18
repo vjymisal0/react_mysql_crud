@@ -3,5 +3,5 @@
 <b>It uses nodemon for server side and react-scripts for user side.
 for more information, please refer to the readme.md file in the root directory.
 <p align="center">
-<img src="./resources-readme/react.gif" width="700px" height="300px"> 
+<img src="./resources-readme/reactjs.gif" width="700px" height="500px"> 
 </p>
